@@ -197,8 +197,8 @@ const AboutSection: React.FC = () => {
 const educationInfo = [
   {
     id: 1,
-    title: "B.Sc (Hons) in Computing",
-    subTitle: "Edinburgh Napier University | 2018 ~ 2019",
+    title: "Bachelor of Engineering in Transportation",
+    subTitle: "Zhejiang Normal University | 2021.09 ~ 2025.06",
     list: [
       "Studied computer science, software development, DevOps",
       "Graduated with First Class Honours",

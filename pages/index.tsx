@@ -33,22 +33,30 @@ const Home: NextPage<Props> = ({ blogPosts }) => {
   return (
     <>
       <AppHead
-        title="Sat Naing - A Full-stack Developer"
+        title="Yuneheng Wang - A Tech Enthusiast"
         url={`${process.env.NEXT_PUBLIC_URL}`}
         meta={meta}
       />
-      <Loader>SatNaing.dev</Loader>
+      <Loader>Yunheng-Wang</Loader>
       <div className="bg-bglight dark:bg-bgdark overflow-hidden">
         <div className="selection:bg-marrsgreen selection:text-bglight dark:selection:bg-carrigreen dark:selection:text-bgdark">
           <SkipToMain />
           <Header />
+
           <main id="main">
-            <HeroSection />
+            {/*part : front*/}
+            <HeroSection /> 
+
+            {/*part : who am i*/}
             <AboutSection />
+            {/*part : Featured Projects*/}
             <ProjectSection />
+            {/*part : Blog*/}
             <BlogSection posts={blogPosts} />
+            {/*part : contact*/}
             <ContactSection />
           </main>
+
           <SocialLinks page="index" />
           <Footer />
         </div>
