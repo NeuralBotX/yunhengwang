@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 
+
 type Props = {
   index: number;
   project: {
@@ -17,24 +18,22 @@ type Props = {
   };
 };
 
+
 const ProjectCard: React.FC<Props> = ({ index, project }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
-
   const even = index % 2 === 0 ? true : false;
 
-  // Animations
+
+  // 项目卡片的动画效果
   useEffect(() => {
     const q = gsap.utils.selector(sectionRef);
-
     gsap.registerPlugin(ScrollTrigger);
-
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
         start: `70% bottom`,
       },
     });
-
     tl.fromTo(
       q(".project-image"),
       { opacity: 0, y: 100 },
@@ -61,9 +60,10 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
       );
   }, []);
 
+
+  // github star数获取
   const [starCount, setStarCount] = useState();
   const [starCountUrl, setStarCountUrl] = useState();
-
   useEffect(() => {
     let ignore = false;
     async function fetchData() {
@@ -77,17 +77,17 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
         setStarCountUrl(stargazersUrl);
       }
     }
-
     fetchData();
-
     () => {
       ignore = true;
     };
   }, [project.githubApi]);
 
+  
   return (
     <div ref={sectionRef} className={`md:basis-1/2 md:px-8 py-2 md:py-4`}>
       <div className={`project-card project-card-${index}`}>
+        {/* 项目图片 */}
         <div className="overflow-hidden">
           <div
             className={`project-image ${project.bgColor} relative aspect-[16/9]`}
@@ -95,19 +95,19 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
             {project.image}
           </div>
         </div>
+
         <div className="overflow-hidden">
           <div className="project-text flex items-center justify-between">
+            {/* 项目名称 */}
             <h3 className=" text-marrsgreen dark:text-carrigreen text-lg my-1 font-medium">
               {project.title}
             </h3>
+
+            
             <div className="flex items-center space-x-5 sm:space-x-3 my-2 sm:my-0 mr-[0.1rem]">
-              <a
-                href={starCountUrl}
-                target="_blank"
-                rel="noreferrer"
-                title={`Check stargazers of '${project.title}' on Github`}
-                className="flex items-center group"
-              >
+
+              {/* star数显示 */}
+              <a href={starCountUrl} target="_blank" rel="noreferrer" title={`Check stargazers of '${project.title}' on Github`} className="flex items-center group">
                 {starCount}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +125,8 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                   <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z" />
                 </svg>
               </a>
+
+              {/* github图标显示 */}
               <a
                 href={project.codeUrl}
                 title={`See '${project.title}' on Github`}
@@ -145,6 +147,8 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                   ></path>
                 </svg>
               </a>
+
+              {/* 箭头图标显示 */}
               <a
                 href={project.liveUrl}
                 title={`See live demo of '${project.title}'`}
@@ -167,14 +171,19 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
                   />
                 </svg>
               </a>
+              
             </div>
           </div>
         </div>
+
+        {/* 项目简介 */}
         <div className="overflow-hidden">
           <p className="project-desc">{project.desc}</p>
         </div>
+
+        {/* 项目标签 */}
         <ul
-          aria-label={`Tech Stack used in ${project.title}`}
+          aria-label={`Tech Stack used in ${project.type}`}
           className={`flex flex-wrap mt-2 mb-4 md:mt-2 md:mb-6 text-sm overflow-hidden`}
         >
           {project.tags.map((tag) => (
@@ -186,6 +195,7 @@ const ProjectCard: React.FC<Props> = ({ index, project }) => {
             </li>
           ))}
         </ul>
+
       </div>
     </div>
   );

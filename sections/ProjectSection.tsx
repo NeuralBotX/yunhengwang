@@ -1,28 +1,27 @@
+{/* 公共库 */}
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { RoughNotation } from "react-rough-notation";
 import { useTheme } from "next-themes";
 
+{/* 组件 */}
 import ProjectCard from "@/components/ProjectCard";
+
+{/* 加载监听和动画 */}
 import { useSection } from "context/section";
 import useOnScreen from "hooks/useOnScreen";
 import useScrollActive from "hooks/useScrollActive";
 
-import terminalPortfolio from "public/projects/terminal-portfolio.webp";
-import haruFashion from "public/projects/haru-fashion.webp";
-import haruApi from "public/projects/haru-api.webp";
-import astroPaper from "public/projects/astro-paper.webp";
-import nextBookstore from "public/projects/next-bookstore.webp";
-import shadcnAdmin from "public/projects/shadcn-admin.webp";
+{/* 加载项目图片 */}
+import Expressway from "public/projects/Expressway.webp";
+
 
 const ProjectSection: React.FC = () => {
+  {/* 监听事件 用于顶部栏跳转 */}
   const { theme } = useTheme();
-
   const sectionRef = useRef<HTMLDivElement>(null);
-
   const elementRef = useRef<HTMLDivElement>(null);
   const isOnScreen = useOnScreen(elementRef);
-
   // Set active link for project section
   const projectSection = useScrollActive(sectionRef);
   const { onSectionChange } = useSection();
@@ -32,6 +31,8 @@ const ProjectSection: React.FC = () => {
 
   return (
     <section ref={sectionRef} id="projects" className="section">
+
+      {/*Featured Projects*/}
       <div className="project-title text-center">
         <RoughNotation
           type="underline"
@@ -43,19 +44,22 @@ const ProjectSection: React.FC = () => {
           <h2 className="section-heading">Featured Projects</h2>
         </RoughNotation>
       </div>
+      {/*小字说明*/}
       <span className="project-desc text-center block mb-4" ref={elementRef}>
-        “Talk is cheap. Show me the code”? I got you. <br />
+        "Talk is cheap. Show me the code"? I got you. <br />
         Here are some of my projects you shouldn't misss
       </span>
+      {/*项目列表*/}
       <div className="flex flex-wrap">
         {projects.map((project, index) => (
           <ProjectCard key={project.title} index={index} project={project} />
         ))}
       </div>
+      {/*下体字*/}
       <div className="others text-center mb-16">
         Other projects can be explored in{" "}
         <a
-          href="https://github.com/satnaing"
+          href="https://github.com/Yunheng-Wang"
           className="font-medium underline link-outline text-marrsgreen dark:text-carrigreen whitespace-nowrap"
         >
           my github profile
@@ -65,120 +69,116 @@ const ProjectSection: React.FC = () => {
   );
 };
 
+
+{/*项目内容数组*/}
+{
+  /*
+  title -> 标题
+  type  -> 项目类型（未显示）
+  image -> 图片
+  desc -> 基本描述
+  tags -> 标签
+  liveUrl -> 项目主页网址
+  codeUrl -> 项目github源代码网址
+  bgColor -> 背景颜色（未显示）
+  githubApi -> 获取项目star数的api
+  */
+}
 const projects = [
   {
-    title: "AstroPaper",
-    type: "Frontend",
+    title: "Expressway",
+    type: "complex network",
     image: (
       <Image
-        src={astroPaper}
+        src={Expressway}
         sizes="100vw"
         fill
-        alt="AstroPaper"
+        alt="Expressway"
         className="transition-transform duration-500 hover:scale-110 object-cover"
       />
     ),
-    desc: "A minimal, accessible and SEO-friendly Astro blog theme. One of the most starred blog templates built with Astro.",
-    tags: ["Astro", "TypeScript", "React", "TailwindCSS"],
-    liveUrl: "https://astro-paper.pages.dev/",
-    codeUrl: "https://github.com/satnaing/astro-paper",
+    desc: "🚀 Expressway network planning 🚦 project in Chongqing🛤️, Sichuan Province🐼",
+    tags: ["python", "networkx", "complex network"],
+    liveUrl: "https://github.com/Yunheng-Wang/Expressway",
+    codeUrl: "https://github.com/Yunheng-Wang/Expressway",
     bgColor: "bg-[#9FD0E3]",
-    githubApi: "https://api.github.com/repos/satnaing/astro-paper",
+    githubApi: "https://api.github.com/repos/Yunheng-Wang/Expressway",
   },
   {
-    title: "Terminal Portfolio",
-    type: "Frontend",
+    title: "Expressway",
+    type: "complex network",
     image: (
       <Image
-        src={terminalPortfolio}
+        src={Expressway}
         sizes="100vw"
         fill
-        alt="Terminal Portfolio"
+        alt="Expressway"
         className="transition-transform duration-500 hover:scale-110 object-cover"
       />
     ),
-    desc: "My portfolio website in terminal version developed with React and TypeScript. ",
-    tags: ["React", "TypeScript", "Styled-Components"],
-    liveUrl: "https://terminal.satnaing.dev/",
-    codeUrl: "https://github.com/satnaing/terminal-portfolio",
-    bgColor: "bg-[#B4BEE0]",
-    githubApi: "https://api.github.com/repos/satnaing/terminal-portfolio",
+    desc: "🚀 Expressway network planning 🚦 project in Chongqing🛤️, Sichuan Province🐼",
+    tags: ["python", "networkx", "complex network"],
+    liveUrl: "https://github.com/Yunheng-Wang/Expressway",
+    codeUrl: "https://github.com/Yunheng-Wang/Expressway",
+    bgColor: "bg-[#9FD0E3]",
+    githubApi: "https://api.github.com/repos/Yunheng-Wang/Expressway",
   },
   {
-    title: "Haru Fashion",
-    type: "Frontend",
+    title: "Expressway",
+    type: "complex network",
     image: (
       <Image
-        src={haruFashion}
+        src={Expressway}
         sizes="100vw"
         fill
-        alt="Haru Fashion App"
+        alt="Expressway"
         className="transition-transform duration-500 hover:scale-110 object-cover"
       />
     ),
-    desc: "An ecommerce web application where users can browse various products, add to wishlist, add to cart, and make purchase. Available in English and Burmese languages.",
-    tags: ["NextJS", "TypeScript", "TailwindCSS", "ContextAPI"],
-    liveUrl: "https://haru-fashion.vercel.app/",
-    codeUrl: "https://github.com/satnaing/haru-fashion",
-    bgColor: "bg-[#A6CECE]",
-    githubApi: "https://api.github.com/repos/satnaing/haru-fashion",
+    desc: "🚀 Expressway network planning 🚦 project in Chongqing🛤️, Sichuan Province🐼",
+    tags: ["python", "networkx", "complex network"],
+    liveUrl: "https://github.com/Yunheng-Wang/Expressway",
+    codeUrl: "https://github.com/Yunheng-Wang/Expressway",
+    bgColor: "bg-[#9FD0E3]",
+    githubApi: "https://api.github.com/repos/Yunheng-Wang/Expressway",
   },
   {
-    title: "Haru API",
-    type: "Backend",
+    title: "Expressway",
+    type: "complex network",
     image: (
       <Image
-        src={haruApi}
+        src={Expressway}
         sizes="100vw"
         fill
-        alt="Haru API"
+        alt="Expressway"
         className="transition-transform duration-500 hover:scale-110 object-cover"
       />
     ),
-    desc: "A RESTful API developed for Haru fashion ecommerce project. Include CRUD operations, authentication, authorization, forgot/reset password and full-text search.",
-    tags: ["ExpressJS", "TypeScript", "PostgreSQL", "Prisma"],
-    liveUrl: "https://satnaing.github.io/haru-api/",
-    codeUrl: "https://github.com/satnaing/haru-api",
-    bgColor: "bg-[#C5E4E7]",
-    githubApi: "https://api.github.com/repos/satnaing/haru-api",
+    desc: "🚀 Expressway network planning 🚦 project in Chongqing🛤️, Sichuan Province🐼",
+    tags: ["python", "networkx", "complex network"],
+    liveUrl: "https://github.com/Yunheng-Wang/Expressway",
+    codeUrl: "https://github.com/Yunheng-Wang/Expressway",
+    bgColor: "bg-[#9FD0E3]",
+    githubApi: "https://api.github.com/repos/Yunheng-Wang/Expressway",
   },
   {
-    title: "Next Bookstore",
-    type: "Frontend + HeadlessCMS",
+    title: "Expressway",
+    type: "complex network",
     image: (
       <Image
-        src={nextBookstore}
+        src={Expressway}
         sizes="100vw"
         fill
-        alt="Next Bookstore"
+        alt="Expressway"
         className="transition-transform duration-500 hover:scale-110 object-cover"
       />
     ),
-    desc: "An online bookstore developed using NextJS 13 with appDir and StrapiCMS.",
-    tags: ["NextJS", "Radix UI ", "TailwindCSS", "TanstackQuery", "StrapiCMS"],
-    liveUrl: "https://nextbookstore.vercel.app/",
-    codeUrl: "https://github.com/satnaing/next-bookstore",
-    bgColor: "bg-[#EBF4F4]",
-    githubApi: "https://api.github.com/repos/satnaing/next-bookstore",
-  },
-  {
-    title: "Shadcn Admin",
-    type: "Backend",
-    image: (
-      <Image
-        src={shadcnAdmin}
-        sizes="100vw"
-        fill
-        alt="Shadcn Admin"
-        className="transition-transform duration-500 hover:scale-110 object-cover"
-      />
-    ),
-    desc: "Admin Dashboard UI built with Shadcn and Vite. Built with responsiveness and accessibility in mind.",
-    tags: ["ShadcnUI", "Vite", "React Router", "TypeScript"],
-    liveUrl: "https://shadcn-admin.netlify.app/",
-    codeUrl: "https://github.com/satnaing/shadcn-admin",
-    bgColor: "bg-[#FBFBFB]",
-    githubApi: "https://api.github.com/repos/satnaing/shadcn-admin",
+    desc: "🚀 Expressway network planning 🚦 project in Chongqing🛤️, Sichuan Province🐼",
+    tags: ["python", "networkx", "complex network"],
+    liveUrl: "https://github.com/Yunheng-Wang/Expressway",
+    codeUrl: "https://github.com/Yunheng-Wang/Expressway",
+    bgColor: "bg-[#9FD0E3]",
+    githubApi: "https://api.github.com/repos/Yunheng-Wang/Expressway",
   },
 ];
 
